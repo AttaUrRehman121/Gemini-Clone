@@ -35,7 +35,8 @@ async function run(prompt) {
 
   const result = await chatSession.sendMessage(prompt);
   console.log(result.response.text());
-  return response.text();
+  return result.response.text();
+  // Uncaught (in promise) ReferenceError: response is not defined thsi error might occure
 }
 
 export default run;

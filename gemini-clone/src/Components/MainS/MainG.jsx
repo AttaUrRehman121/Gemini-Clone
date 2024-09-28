@@ -15,6 +15,12 @@ const MainG = () => {
     input,
   } = useContext(Context);
 
+  // const handlekeydown = (event) => {
+  //   if (event.key === "Enter") {
+  //     onSent(input);
+  //   }
+  // };
+
   return (
     <div className="Main">
       <div className="nav">
@@ -59,9 +65,19 @@ const MainG = () => {
               <img src={assets.Atta_icon} alt="user" />
               <p>{recentPrompt}</p>
             </div>
-            <div className="resultData">
+            <div className="result-Data">
               <img src={assets.gemini_icon} alt="gemini_icon" />
-              <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+              {/* ternory operator which means using inline jsx in react */}
+              {/* this state checks if the respone is genrated or not if yes it will display the data otherwise it will show loading animation  */}
+              {loading ? (
+                <div className="loader">
+                  <hr />
+                  <hr />
+                  <hr />
+                </div>
+              ) : (
+                <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+              )}
             </div>
           </div>
         )}
@@ -72,15 +88,18 @@ const MainG = () => {
               value={input}
               type="text"
               placeholder="Enter a Prompt here"
+              // onKeyDown={handlekeydown}
             />
             <div>
               <img src={assets.gallery_icon} alt="upload icon" />
               <img src={assets.mic_icon} alt="mic_icon" />
-              <img
-                onClick={() => onSent()}
-                src={assets.send_icon}
-                alt="send_icon"
-              />
+              {input ? (
+                <img
+                  onClick={() => onSent()}
+                  src={assets.send_icon}
+                  alt="send_icon"
+                />
+              ) : null}
             </div>
           </div>
           <p className="bottom-info">
