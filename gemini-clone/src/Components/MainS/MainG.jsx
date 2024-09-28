@@ -34,7 +34,7 @@ const MainG = () => {
           <>
             <div className="greet">
               <p>
-                <span>Hello, Atta</span>
+                <span>Hello, Atta.</span>
               </p>
               <p>How I can help you?</p>
             </div>
