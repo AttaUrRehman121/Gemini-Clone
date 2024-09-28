@@ -24,7 +24,7 @@
     cursor: pointer;
 }
 
-.main-conatiner
+.main-container
 {
     max-width: 900px;
     margin: auto;
@@ -32,10 +32,10 @@
 
 .Main .greet
 {
-    margin: 15px 0px ;
+    margin: 50px 0px ;
     font-size: 40px;
     color: #c4c7c5;
-    font-weight:600;
+    font-weight:500;
     padding: 20px;
 }
 
@@ -53,7 +53,8 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
         gap: 15px;
-        padding: 20px;       
+        padding: 20px;    
+        
     }
 
     .Main .card {
