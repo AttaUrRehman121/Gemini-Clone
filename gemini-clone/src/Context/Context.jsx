@@ -1,36 +1,43 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import run from "../config/gemini";
-
 export const Context = createContext();
 
 const ContextProvider = (props) => {
-  const [input, setinput] = useState(""); // to svae the input data
-
-  const [recentPrompt, setRecentPrompt] = useState(""); // to save recent prompt
-  const [PrevPrompts, setPrevPrompts] = useState([]); //. save it to store input history
-  const [showResult, setShowResult] = useState(false); // hide card and display data
-  const [loading, setLoading] = useState(false); //
+  const [input, setInput] = useState("");
+  const [recentPrompt, setRecentPrompt] = useState("");
+  const [prevPrompt, setPrevPrompt] = useState([]);
+  const [showResult, setShowResult] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [resultData, setResultData] = useState("");
 
   const onSent = async (prompt) => {
-    // function to pass prompts and genrate results S
-    await run(prompt);
+    setResultData("");
+    setLoading(true);
+    setShowResult(true);
+    setRecentPrompt(input);
+    const response = await run(input);
+    setResultData(response);
+    setLoading(false);
+    setInput("");
   };
 
-  const contectValue = {
-    PrevPrompts,
-    setPrevPrompts,
-    onSent,
-    setRecentPrompt,
-    recentPrompt,
-    showResult,
-    loading,
-    resultData,
+  const ContextValue = {
     input,
-    setinput,
+    onSent,
+    setInput,
+    recentPrompt,
+    setRecentPrompt,
+    prevPrompt,
+    setPrevPrompt,
+    showResult,
+    setShowResult,
+    loading,
+    setLoading,
+    resultData,
+    setResultData,
   };
   return (
-    <Context.Provider value={contectValue}>{props.children}</Context.Provider>
+    <Context.Provider value={ContextValue}>{props.children}</Context.Provider>
   );
 };
 

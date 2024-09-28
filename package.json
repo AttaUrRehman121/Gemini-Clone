@@ -1,5 +1,9 @@
 {
   "dependencies": {
     "@google/generative-ai": "^0.20.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.8",
+    "vite-plugin-react": "^4.0.1"
   }
 }
